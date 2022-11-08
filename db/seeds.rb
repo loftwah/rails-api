@@ -5,3 +5,15 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+require 'yaml'
+
+# Load the services from the YAML file
+
+services = YAML.load_file('db/services.yml')
+
+# Create the services
+
+services.each do |service|
+    Service.create([{ name: service.name, description: service.description }])
+end
